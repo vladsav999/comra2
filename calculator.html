@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вар3</title>
+    <style>
+        select {
+            width: 80%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input{
+            width: 80%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ffbb00;
+            color: rgb(255, 255, 255);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            justify-content: space-around;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            
+        }
+        .b1 {
+            display: flex;
+            flex: 1; 
+            justify-content: space-around;
+            background-color: #f2f2f2;
+            width: 100%;
+        }
+
+        .but{
+            display: flex;
+            flex: 1; 
+            width: 10%;
+
+        }
+
+        .a1 {
+            justify-content: space-around;
+            background-color: #f2f2f2;
+            width: 100%;
+        }
+        .main{
+            display: flex;
+            flex: 1; 
+            height: 80px;
+
+        }
+        .main_el{
+            display: flex;
+            justify-content: flex-start;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            margin-right: 10px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            font-size: 25px;
+            color: rgb(0, 0, 0);
+            
+        }
+        .main_el:hover{
+            color: rgb(0, 0, 0);
+            background: rgb(180, 179, 176);
+        }
+        button{
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/order" method="post">
+            <div class="b1">
+                <div class="a1">
+                <label for="Общая длина, включая ворота и калитку, м">Общая длина, включая ворота и калитку, м</label><br>
+                <input type="number" id="Общая_длина" placeholder="Введите длину"><br>
+                <label for="Выбрать толщину и покрытие">Толщина покрытия, мм</label><br>
+                <select id="Толщина_покрытия">
+                    <option value="0.3">С полимерным покр. толщина 0,3мм</option>
+                    <option value="0.5">0,5</option>
+                    <option value="0.7">0,7</option>
+                </select><br>
+                <label for="Количество горизонталей (лаги)">Количество горизонталей (лаги)</label><br>
+                <select id="Лаги">
+                    <option value="1">Лаги в один ряд</option>
+                    <option value="2">Лаги в два ряда</option>
+                </select><br>
+                <label for="Количество ворот">Количество ворот</label><br>
+                <select id="Количество_ворот">
+                    <option value="0">без ворот</option>
+                    <option value="1">один</option>
+                    <option value="2">два</option>
+                </select><br>
+                <label for="Количество калиток">Количество калиток</label><br>
+                <select id="Количество_калиток">
+                    <option value="0">без калитки</option>
+                    <option value="1">одна</option>
+                    <option value="2">две</option>
+                </select><br>
+                 </div>
+            <div class="a1">
+                <label for="Высота забора (профлиста)">Высота забора (профлиста)</label><br>
+                <select id="Высота_забора">
+                    <option value="1.5">1.5 м</option>
+                    <option value="2">2 м</option>
+                    <option value="2.5">2.5 м</option>
+                </select><br>
+                <label for="Выберите толщину столба">Выберите толщину столба</label><br>
+                <select id="Толщина_столба">
+                    <option value="20">1.5 мм</option>
+                    <option value="25">2 мм</option>
+                    <option value="30">2.5 мм</option>
+                </select><br>
+                <label for="Покраска">Покраска</label><br>
+                <select id="Покраска">
+                    <option value="20">Красный</option>
+                    <option value="15">Не красный</option>
+                </select><br>
+                <label for="Ширина ворот">Ширина ворот</label><br>
+                <select id="Ширина_ворот">
+                    <option value="без ворот">без ворот</option>
+                    <option value="1">1 м</option>
+                    <option value="1.5">1.5 м</option>
+                    <option value="2">2 м</option>
+                </select><br>
+                <label for="Оплата_в_рублях">Оплата в рублях</label><br>
+                <input type="number" id="Сумма" placeholder="К оплате"><br>
+            </div>
+
+        </div>
+            <script>
+                function ras() {
+                    const ТолщинаПокрытия = parseFloat(document.getElementById('Толщина_покрытия').value) || 0;
+                    const Лаги_кол = parseFloat(document.getElementById('Лаги').value) || 0;
+                    const КоличествоВорот = parseFloat(document.getElementById('Количество_ворот').value) || 0;
+                    const КоличествоКалиток = parseFloat(document.getElementById('Количество_калиток').value) || 0;
+                    const ВысотаЗабора = parseFloat(document.getElementById('Высота_забора').value) || 0;
+                    const ТолщинаСтолба = parseFloat(document.getElementById('Толщина_столба').value) || 0;
+                    const Покраска = parseFloat(document.getElementById('Покраска').value) || 0;
+                    const ШиринаВорот = parseFloat(document.getElementById('Ширина_ворот').value) || 0;
+                    const ОбщаяДлина = parseFloat(document.getElementById('Общая_длина').value) || 0;
+
+                    const ЦенаПокрытий = ОбщаяДлина * ТолщинаПокрытия * 150 * ВысотаЗабора * Покраска
+                   // alert('ЦенаПокрытий: ' + ЦенаПокрытий + ' руб.');
+                    const result = ЦенаПокрытий + (ТолщинаСтолба * 100  *  ОбщаяДлина / 5) + КоличествоКалиток * 1400 + КоличествоВорот * ШиринаВорот * 3400 * 7400 + Лаги_кол * 1200 ;
+
+                    //alert('С вас: ' + result + ' руб.');
+                    document.getElementById('Сумма').value = result;
+                }
+            </script>
+        </form>
+        <div class="but">
+            <button onclick="ras()">Расcчитать</button>
+
+        </div>
+    </div>
+</body>
+</html>
